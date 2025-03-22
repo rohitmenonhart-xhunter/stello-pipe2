@@ -1,10 +1,10 @@
 // API configuration
 export const API_CONFIG = {
   // Node.js server endpoints
-  API_BASE_URL: 'http://localhost:8080/api',
+  API_BASE_URL: import.meta.env.VITE_API_BASE_URL || 'http://localhost:8080/api',
   
   // Python FastAPI server endpoints
-  PYTHON_API_BASE_URL: 'http://localhost:8000'
+  PYTHON_API_BASE_URL: import.meta.env.VITE_PYTHON_API_BASE_URL || 'http://localhost:8000'
 };
 
 // Helper functions to get full URLs
