@@ -47,7 +47,11 @@ try {
   const PORT = process.env.PORT || 8080;
 
   // Middleware
-  app.use(cors());
+  app.use(cors({
+    origin: '*', // Allow all origins in development and production
+    methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
+    allowedHeaders: ['Content-Type', 'Authorization']
+  }));
   app.use(express.json());
   log('Middleware configured');
 

@@ -8,7 +8,8 @@
     "start": "node api/server.js",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
-    "server": "node api/server.js"
+    "server": "node api/server.js",
+    "vercel-build": "vite build"
   },
   "dependencies": {
     "@clerk/clerk-react": "^5.24.0",
