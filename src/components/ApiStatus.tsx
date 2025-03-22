@@ -1,58 +1,107 @@
 import React, { useEffect, useState } from 'react';
 import { getApiUrl } from '../config/api';
+import { Alert, Box, Button, CircularProgress, Typography } from '@mui/material';
 
 const ApiStatus: React.FC = () => {
   const [status, setStatus] = useState<'loading' | 'connected' | 'error'>('loading');
-  const [message, setMessage] = useState<string>('Checking connection...');
+  const [message, setMessage] = useState<string>('');
+  const [error, setError] = useState<string>('');
+  const [apiUrl, setApiUrl] = useState<string>('');
+
+  const checkApiConnection = async () => {
+    setStatus('loading');
+    setError('');
+    
+    try {
+      const url = getApiUrl('');
+      setApiUrl(url);
+      
+      console.log('Checking API connection to:', url);
+      const response = await fetch(url, {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+          'Accept': 'application/json'
+        }
+      });
+      
+      console.log('API response status:', response.status);
+      
+      if (response.ok) {
+        const data = await response.json();
+        setStatus('connected');
+        setMessage(data.message || 'API is connected');
+      } else {
+        const errorData = await response.text();
+        console.error('API error response:', errorData);
+        setStatus('error');
+        setError(`API responded with status: ${response.status}`);
+      }
+    } catch (err) {
+      console.error('API connection error:', err);
+      setStatus('error');
+      setError(`Connection error: ${err instanceof Error ? err.message : String(err)}`);
+    }
+  };
 
   useEffect(() => {
-    const checkApiConnection = async () => {
-      try {
-        // Try to connect to the health endpoint
-        const response = await fetch(getApiUrl('health'));
-        
-        if (response.ok) {
-          const data = await response.json();
-          setStatus('connected');
-          setMessage(`Connected to API! Server responded with: ${JSON.stringify(data)}`);
-        } else {
-          setStatus('error');
-          setMessage(`API responded with status: ${response.status}`);
-        }
-      } catch (error) {
-        setStatus('error');
-        setMessage(`Failed to connect to API: ${error instanceof Error ? error.message : String(error)}`);
-        console.error('API connection error:', error);
-      }
-    };
-
     checkApiConnection();
   }, []);
 
   return (
-    <div className="api-status-container" style={{ padding: '1rem', margin: '1rem 0', borderRadius: '4px', border: '1px solid #ccc' }}>
-      <h3>API Connection Status</h3>
-      <div style={{ 
-        display: 'flex', 
-        alignItems: 'center', 
-        gap: '0.5rem',
-        color: status === 'connected' ? 'green' : status === 'error' ? 'red' : 'orange'
-      }}>
-        <div style={{ 
-          width: '12px', 
-          height: '12px', 
-          borderRadius: '50%', 
-          backgroundColor: status === 'connected' ? 'green' : status === 'error' ? 'red' : 'orange' 
-        }}></div>
-        <span>
-          {status === 'connected' ? 'Connected' : status === 'error' ? 'Error' : 'Connecting...'}
-        </span>
-      </div>
-      <p>{message}</p>
-      <div>
-        <strong>API URL:</strong> {getApiUrl('')}
-      </div>
-    </div>
+    <Box 
+      sx={{ 
+        p: 2, 
+        border: '1px solid', 
+        borderColor: status === 'connected' ? 'success.main' : 
+                     status === 'error' ? 'error.main' : 'grey.300',
+        borderRadius: 1,
+        mt: 2,
+        mb: 2 
+      }}
+    >
+      <Typography variant="h6" gutterBottom>
+        API Connection Status
+      </Typography>
+      
+      {status === 'loading' && (
+        <Box display="flex" alignItems="center" gap={2}>
+          <CircularProgress size={20} />
+          <Typography>Checking API connection...</Typography>
+        </Box>
+      )}
+      
+      {status === 'connected' && (
+        <Alert severity="success" sx={{ mb: 1 }}>
+          Connected successfully!
+        </Alert>
+      )}
+      
+      {status === 'error' && (
+        <Alert severity="error" sx={{ mb: 1 }}>
+          {error}
+        </Alert>
+      )}
+      
+      <Typography variant="body2" sx={{ mt: 1 }}>
+        API URL: {apiUrl}
+      </Typography>
+      
+      {message && (
+        <Typography variant="body2" sx={{ mt: 1 }}>
+          Message: {message}
+        </Typography>
+      )}
+      
+      <Button 
+        variant="outlined" 
+        size="small" 
+        onClick={checkApiConnection} 
+        sx={{ mt: 2 }}
+      >
+        Retry Connection
+      </Button>
+    </Box>
   );
 };
 
