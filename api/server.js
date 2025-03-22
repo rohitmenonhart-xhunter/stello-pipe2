@@ -48,9 +48,10 @@ try {
 
   // Middleware
   app.use(cors({
-    origin: '*', // Allow all origins in development and production
+    origin: '*', // Allow all origins
     methods: ['GET', 'POST', 'PUT', 'DELETE', 'OPTIONS'],
-    allowedHeaders: ['Content-Type', 'Authorization']
+    allowedHeaders: ['Content-Type', 'Authorization'],
+    credentials: true
   }));
   app.use(express.json());
   log('Middleware configured');
@@ -73,6 +74,16 @@ try {
   app.use('/api', (req, res, next) => {
     log(`API Request: ${req.method} ${req.path}`);
     next();
+  });
+
+  // Add a base API endpoint
+  app.get('/api', (req, res) => {
+    log('Base API endpoint called');
+    res.status(200).json({ 
+      status: 'ok',
+      message: 'API server is running',
+      version: '1.0.0'
+    });
   });
 
   // Save user data endpoint
@@ -910,6 +921,25 @@ try {
     console.log('==============================');
     console.log(`🚀 SERVER READY ON PORT ${PORT}`);
     console.log('==============================');
+  });
+
+  // Add global error handler
+  app.use((err, req, res, next) => {
+    console.error('Unhandled error:', err);
+    log(`Unhandled error: ${err.message}`);
+    res.status(500).json({
+      error: 'Internal Server Error',
+      message: process.env.NODE_ENV === 'production' ? 'Something went wrong' : err.message
+    });
+  });
+
+  // Catch-all route for 404 errors
+  app.use((req, res) => {
+    log(`404 Not Found: ${req.method} ${req.originalUrl}`);
+    res.status(404).json({
+      error: 'Not Found',
+      message: `Route not found: ${req.originalUrl}`
+    });
   });
 } catch (error) {
   log('Error starting server: ' + error.message);
