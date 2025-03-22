@@ -1,0 +1,61 @@
+{
+  "id": "corporate-modern",
+  "name": "Corporate Modern",
+  "description": "A sleek, professional template for corporate websites with a clean design and modern features.",
+  "version": "1.0.0",
+  "author": "Your Company",
+  "framework": "react",
+  "tags": ["corporate", "business", "professional", "modern"],
+  "previewUrl": "/editor/preview/corporate-modern",
+  "imageUrl": "/templates/react/corporate-modern/preview.png",
+  "editableComponents": [
+    {
+      "id": "header",
+      "name": "Header",
+      "path": "src/components/Header.jsx",
+      "type": "header"
+    },
+    {
+      "id": "hero",
+      "name": "Hero Section",
+      "path": "src/components/Hero.jsx",
+      "type": "hero"
+    },
+    {
+      "id": "services",
+      "name": "Services Section",
+      "path": "src/components/Services.jsx",
+      "type": "section"
+    },
+    {
+      "id": "about",
+      "name": "About Section",
+      "path": "src/components/About.jsx",
+      "type": "section"
+    },
+    {
+      "id": "testimonials",
+      "name": "Testimonials",
+      "path": "src/components/Testimonials.jsx",
+      "type": "section"
+    },
+    {
+      "id": "contact",
+      "name": "Contact Form",
+      "path": "src/components/ContactForm.jsx",
+      "type": "form"
+    },
+    {
+      "id": "footer",
+      "name": "Footer",
+      "path": "src/components/Footer.jsx",
+      "type": "footer"
+    }
+  ],
+  "dependencies": {
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "react-router-dom": "^6.10.0",
+    "styled-components": "^5.3.9"
+  }
+} 

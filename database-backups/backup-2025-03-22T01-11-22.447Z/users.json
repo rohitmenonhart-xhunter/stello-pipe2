@@ -1,0 +1,262 @@
+[
+  {
+    "_id": "67c2db1f7a6396c8541fcb99",
+    "name": "C Rohit",
+    "email": "rohitmenon@gmail.com",
+    "phone": "09444141159",
+    "brdAnswers": {
+      "businessGoals": "test",
+      "targetAudience": "test",
+      "keyFeatures": "Business Type: portfolio, Selected Pages: Home Page, Contact Us, About Us, Case Studies, Services",
+      "contentTypes": "Home Page, Contact Us, About Us, Case Studies, Services",
+      "designPreferences": "test",
+      "technicalRequirements": "test",
+      "timeline": "ts",
+      "budget": "5"
+    },
+    "selectedTemplate": {
+      "id": "shop-modern",
+      "name": "Shop Modern",
+      "framework": "react",
+      "description": "A modern e-commerce template with product galleries and shopping cart functionality."
+    },
+    "createdAt": "2025-03-01T10:02:07.732Z",
+    "__v": 0
+  },
+  {
+    "_id": "67c2de6f7a6396c8541fcb9b",
+    "name": "Rohit menon",
+    "email": "rohitmanon2@gmail.com",
+    "phone": "",
+    "clerkId": "user_2ti95slOArl4RmIgmNoPihAxKJ5",
+    "brdAnswers": {
+      "businessGoals": "test77",
+      "targetAudience": "test77",
+      "keyFeatures": "Business Type: saas, Selected Pages: Home Page, Contact Us, Features, Pricing, Articles/Blog",
+      "contentTypes": "Home Page, Contact Us, Features, Pricing, Articles/Blog",
+      "designPreferences": "test77",
+      "technicalRequirements": "test77",
+      "timeline": "3 month",
+      "budget": "400"
+    },
+    "selectedTemplate": {
+      "id": "corporate-modern",
+      "name": "Corporate Modern",
+      "framework": "react",
+      "description": "A sleek, professional template for corporate websites with a clean design and modern features."
+    },
+    "createdAt": "2025-03-01T10:16:15.382Z",
+    "__v": 0,
+    "verifiedFields": {
+      "email": true,
+      "phone": false
+    },
+    "projectId": "PRJ-EMXOBL-3XDT"
+  },
+  {
+    "_id": "67c2e1e07a6396c8541fcb9f",
+    "name": "Rohit menon",
+    "email": "rohitmanon3@gmail.com",
+    "phone": "7550000805",
+    "clerkId": "user_2ti95slOArl4RmIgmNoPihAxKJ5",
+    "brdAnswers": {
+      "businessGoals": "test",
+      "targetAudience": "test",
+      "keyFeatures": "Business Type: corporate, Selected Pages: Home Page, Contact Us, Services, Case Studies, About Us, Customer Service, Investors, Articles/Blog",
+      "contentTypes": "Home Page, Contact Us, Services, Case Studies, About Us, Customer Service, Investors, Articles/Blog",
+      "designPreferences": "test",
+      "technicalRequirements": "test",
+      "timeline": "dec",
+      "budget": "34"
+    },
+    "selectedTemplate": {
+      "id": "corporate-modern",
+      "name": "Corporate Modern",
+      "framework": "react",
+      "description": "A sleek, professional template for corporate websites with a clean design and modern features."
+    },
+    "createdAt": "2025-03-01T10:30:56.043Z",
+    "__v": 0
+  },
+  {
+    "_id": "67c2e702259895448c1a752c",
+    "name": "Test User",
+    "email": "test@example.com",
+    "phone": "1234567890",
+    "verifiedFields": {
+      "email": false,
+      "phone": false
+    },
+    "brdAnswers": {
+      "businessGoals": "Updated",
+      "targetAudience": "Updated",
+      "keyFeatures": "Updated",
+      "contentTypes": "Updated",
+      "designPreferences": "Updated",
+      "technicalRequirements": "Updated",
+      "timeline": "Updated",
+      "budget": "Updated"
+    },
+    "selectedTemplate": {
+      "id": "test2",
+      "name": "Test Template 2",
+      "framework": "nextjs",
+      "description": "Test 2"
+    },
+    "createdAt": "2025-03-01T10:52:50.668Z",
+    "__v": 0,
+    "projectId": "PRJ-9TBE36-NEGY"
+  },
+  {
+    "_id": "67c2e710259895448c1a7532",
+    "name": "Clerk User Updated",
+    "email": "clerk@example.com",
+    "phone": "6666666666",
+    "clerkId": "user_test123",
+    "verifiedFields": {
+      "email": true,
+      "phone": true
+    },
+    "brdAnswers": {
+      "businessGoals": "Updated",
+      "targetAudience": "Updated",
+      "keyFeatures": "Updated",
+      "contentTypes": "Updated",
+      "designPreferences": "Updated",
+      "technicalRequirements": "Updated",
+      "timeline": "Updated",
+      "budget": "Updated"
+    },
+    "selectedTemplate": {
+      "id": "clerk2",
+      "name": "Clerk Template 2",
+      "framework": "nextjs",
+      "description": "Clerk 2"
+    },
+    "createdAt": "2025-03-01T10:53:04.418Z",
+    "__v": 0
+  },
+  {
+    "_id": "67dd5944705c26cb9b0f2a25",
+    "name": "Test User",
+    "email": "testuser@example.com",
+    "password": "-6b-5a-48-48-44-4c-49-57-8a-89-88.websiteGenerator-297",
+    "verifiedFields": {
+      "email": false,
+      "phone": false
+    },
+    "role": "user",
+    "createdAt": "2025-03-21T12:19:16.697Z",
+    "__v": 0
+  },
+  {
+    "_id": "67dd59bd705c26cb9b0f2a28",
+    "name": "New Test User",
+    "email": "newtestuser@example.com",
+    "password": "-6b-5a-48-48-44-4c-49-57-8a-89-88.websiteGenerator-297",
+    "verifiedFields": {
+      "email": false,
+      "phone": false
+    },
+    "role": "user",
+    "createdAt": "2025-03-21T12:21:17.504Z",
+    "__v": 0
+  },
+  {
+    "_id": "67dd5a0df9ec2cc58fb9aee8",
+    "name": "Test User 3",
+    "email": "testuser3@example.com",
+    "password": "-6b-5a-48-48-44-4c-49-57-8a-89-88.websiteGenerator-297",
+    "verifiedFields": {
+      "email": false,
+      "phone": false
+    },
+    "role": "user",
+    "createdAt": "2025-03-21T12:22:37.530Z",
+    "__v": 0
+  },
+  {
+    "_id": "67dd5a793eb0e271ffeea13f",
+    "name": "Test User 4",
+    "email": "testuser4@example.com",
+    "password": "UGFzc3dvcmQxMjNGSVhFRFNBTFQ=",
+    "verifiedFields": {
+      "email": false,
+      "phone": false
+    },
+    "role": "user",
+    "createdAt": "2025-03-21T12:24:25.623Z",
+    "__v": 0,
+    "lastLogin": "2025-03-21T12:24:30.372Z"
+  },
+  {
+    "_id": "67dd5fa63eb0e271ffeea147",
+    "name": "test",
+    "email": "testing@gmail.com",
+    "phone": "8778206445",
+    "password": "cm9oaXQyMDAzRklYRURTQUxU",
+    "verifiedFields": {
+      "email": true,
+      "phone": true
+    },
+    "role": "user",
+    "createdAt": "2025-03-21T12:46:30.955Z",
+    "__v": 0,
+    "clerkId": "67dd5fa63eb0e271ffeea147",
+    "projectId": "PRJ-Q2G180-J3NF"
+  },
+  {
+    "_id": "67dd63ede831d37d7f6a41e0",
+    "name": "robin",
+    "email": "robin@gmail.com",
+    "password": "cm9oaXQyMDAzRklYRURTQUxU",
+    "role": "user",
+    "verifiedFields": {
+      "email": true,
+      "phone": false
+    },
+    "createdAt": "2025-03-21T13:04:45.201Z",
+    "updatedAt": "2025-03-21T13:04:45.202Z",
+    "__v": 0,
+    "clerkId": "67dd63ede831d37d7f6a41e0",
+    "phone": "",
+    "projectId": "PRJ-U5QM4I-XKRW"
+  },
+  {
+    "_id": "67ddfc077683b1a96773f52a",
+    "name": "Test Developer 3",
+    "email": "testdev3@example.com",
+    "hash": "cGFzc3dvcmQxMjNGSVhFRFNBTFQ=",
+    "role": "developer",
+    "devId": "dev-2",
+    "createdAt": "2025-03-21T23:53:43.282Z",
+    "projects": [],
+    "updatedAt": "2025-03-21T23:53:43.283Z",
+    "__v": 0
+  },
+  {
+    "_id": "67ddfc117683b1a96773f52e",
+    "name": "Admin User",
+    "email": "admin@example.com",
+    "hash": "YWRtaW4xMjNGSVhFRFNBTFQ=",
+    "role": "admin",
+    "devId": "dev-3",
+    "createdAt": "2025-03-21T23:53:53.702Z",
+    "projects": [],
+    "updatedAt": "2025-03-21T23:53:53.702Z",
+    "__v": 0
+  },
+  {
+    "_id": "67ddfc577683b1a96773f540",
+    "name": "rohit",
+    "email": "rohit@gmail.com",
+    "hash": "cm9oaXQyMDAzRklYRURTQUxU",
+    "role": "developer",
+    "devId": "dev-4",
+    "createdAt": "2025-03-21T23:55:03.340Z",
+    "projects": [],
+    "updatedAt": "2025-03-21T23:55:03.340Z",
+    "__v": 0,
+    "lastLoginAt": "2025-03-21T23:55:51.158Z"
+  }
+]

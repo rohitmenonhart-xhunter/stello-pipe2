@@ -1,0 +1,221 @@
+/* App.css - Modern styling with purple, white, and black color scheme */
+
+/* Import Google Fonts */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+:root {
+  --purple-primary: #6200EA;
+  --purple-light: #B388FF;
+  --purple-dark: #3700B3;
+  --black: #212121;
+  --gray-dark: #424242;
+  --gray-light: #757575;
+  --white: #FFFFFF;
+  --off-white: #F9F9FF;
+}
+
+* {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  font-family: 'Inter', sans-serif;
+  background-color: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+}
+
+.App {
+  min-height: 100vh;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Animations */
+@keyframes fadeIn {
+  from { opacity: 0; }
+  to { opacity: 1; }
+}
+
+@keyframes slideUp {
+  from { transform: translateY(30px); opacity: 0; }
+  to { transform: translateY(0); opacity: 1; }
+}
+
+@keyframes pulse {
+  0% { transform: scale(1); }
+  50% { transform: scale(1.05); }
+  100% { transform: scale(1); }
+}
+
+@keyframes gradientBg {
+  0% { background-position: 0% 50%; }
+  50% { background-position: 100% 50%; }
+  100% { background-position: 0% 50%; }
+}
+
+/* Apply animations to elements */
+.fade-in {
+  animation: fadeIn 0.8s ease-in-out;
+}
+
+.slide-up {
+  animation: slideUp 0.6s ease-out;
+}
+
+.pulse {
+  animation: pulse 2s infinite;
+}
+
+/* Gradient backgrounds */
+.gradient-bg {
+  background: linear-gradient(135deg, var(--purple-primary), var(--purple-light));
+  background-size: 200% 200%;
+  animation: gradientBg 15s ease infinite;
+  color: var(--white);
+}
+
+/* Stepper customization */
+.MuiStepLabel-label {
+  font-weight: 500 !important;
+}
+
+.MuiStepIcon-root.Mui-active {
+  color: var(--purple-primary) !important;
+}
+
+.MuiStepIcon-root.Mui-completed {
+  color: var(--purple-dark) !important;
+}
+
+/* Form styling */
+.form-container {
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 2rem;
+  border-radius: 16px;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+  background-color: var(--white);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.form-container:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 50px rgba(98, 0, 234, 0.15);
+}
+
+/* IA Diagram styling */
+.diagram-container {
+  width: 100%;
+  height: 600px;
+  background-color: var(--off-white);
+  border-radius: 16px;
+  box-shadow: 0 8px 30px rgba(0, 0, 0, 0.06);
+  transition: all 0.3s ease;
+  position: relative;
+}
+
+.diagram-container:hover {
+  box-shadow: 0 12px 40px rgba(98, 0, 234, 0.12);
+}
+
+/* Template selection styling */
+.template-card {
+  transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275), 
+              box-shadow 0.4s ease;
+  border-radius: 16px;
+  overflow: hidden;
+}
+
+.template-card:hover {
+  transform: translateY(-10px) scale(1.02);
+  box-shadow: 0 20px 40px rgba(98, 0, 234, 0.2);
+}
+
+.template-card.selected {
+  border: 2px solid var(--purple-primary);
+  box-shadow: 0 0 0 4px rgba(98, 0, 234, 0.2);
+}
+
+/* Template editor styling */
+.editor-container {
+  display: flex;
+  height: calc(100vh - 200px);
+  border-radius: 16px;
+  overflow: hidden;
+  box-shadow: 0 10px 40px rgba(0, 0, 0, 0.08);
+}
+
+.component-list {
+  width: 250px;
+  border-right: 1px solid rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  background-color: var(--white);
+}
+
+.preview-area {
+  flex-grow: 1;
+  background-color: var(--off-white);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+}
+
+.editor-panel {
+  width: 300px;
+  border-left: 1px solid rgba(0, 0, 0, 0.08);
+  overflow-y: auto;
+  padding: 16px;
+  background-color: var(--white);
+}
+
+/* Button styling */
+.action-button {
+  margin-top: 16px;
+  margin-right: 8px;
+  transition: all 0.3s ease;
+}
+
+.action-button:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 8px 15px rgba(98, 0, 234, 0.2);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 8px;
+}
+
+::-webkit-scrollbar-track {
+  background: var(--off-white);
+}
+
+::-webkit-scrollbar-thumb {
+  background: var(--purple-light);
+  border-radius: 10px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+  background: var(--purple-primary);
+}
+
+/* Responsive adjustments */
+@media (max-width: 960px) {
+  .editor-container {
+    flex-direction: column;
+    height: auto;
+  }
+  
+  .component-list, .editor-panel {
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid rgba(0, 0, 0, 0.08);
+  }
+  
+  .preview-area {
+    min-height: 500px;
+  }
+} 

@@ -1,0 +1,16 @@
+services:
+  - type: web
+    name: brd-ia-generator
+    env: node
+    plan: free
+    buildCommand: npm install --legacy-peer-deps && npm run build
+    startCommand: npm start
+    healthCheckPath: /health
+    envVars:
+      - key: BUN_VERSION
+        value: 1.0.25
+      - key: NODE_VERSION
+        value: 20.11.0
+      - key: PORT
+        value: 10000
+    autoDeploy: true 

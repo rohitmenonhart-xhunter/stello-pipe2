@@ -1,0 +1,64 @@
+{
+  "id": "business-pro",
+  "name": "Business Pro",
+  "description": "Feature-rich business template with sections for services, team, and testimonials.",
+  "version": "1.0.0",
+  "author": "Your Company",
+  "framework": "nextjs",
+  "tags": ["corporate", "business", "services"],
+  "previewUrl": "/editor/preview/business-pro",
+  "imageUrl": "/templates/nextjs/business-pro/preview.png",
+  "editableComponents": [
+    {
+      "id": "header",
+      "name": "Header",
+      "path": "src/components/Header.tsx",
+      "type": "header"
+    },
+    {
+      "id": "hero",
+      "name": "Hero Section",
+      "path": "src/components/Hero.tsx",
+      "type": "hero"
+    },
+    {
+      "id": "services",
+      "name": "Services Section",
+      "path": "src/components/Services.tsx",
+      "type": "section"
+    },
+    {
+      "id": "team",
+      "name": "Team Section",
+      "path": "src/components/Team.tsx",
+      "type": "section"
+    },
+    {
+      "id": "testimonials",
+      "name": "Testimonials",
+      "path": "src/components/Testimonials.tsx",
+      "type": "section"
+    },
+    {
+      "id": "contact",
+      "name": "Contact Form",
+      "path": "src/components/ContactForm.tsx",
+      "type": "form"
+    },
+    {
+      "id": "footer",
+      "name": "Footer",
+      "path": "src/components/Footer.tsx",
+      "type": "footer"
+    }
+  ],
+  "dependencies": {
+    "next": "^13.3.0",
+    "react": "^18.2.0",
+    "react-dom": "^18.2.0",
+    "@mui/material": "^5.11.16",
+    "@mui/icons-material": "^5.11.16",
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6"
+  }
+} 
