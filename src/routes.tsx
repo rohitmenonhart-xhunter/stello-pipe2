@@ -8,6 +8,7 @@ import DeveloperLogin from './components/DeveloperLogin';
 import Register from './components/Register';
 import AdminPanel from './components/AdminPanel';
 import AdminAccess from './components/AdminAccess';
+import TemplateEditor from './components/TemplateEditor';
 import { AuthProvider, useAuth } from './context/AuthContext';
 import LandingPage from './components/LandingPage';
 
@@ -85,6 +86,13 @@ const AdminRoute: React.FC<{ element: React.ReactElement }> = ({ element }) => {
   return <Navigate to="/client-dashboard" replace />;
 };
 
+// Template Editor route that checks for the special access key
+const TemplateEditorRoute: React.FC<{ element: React.ReactElement }> = ({ element }) => {
+  // The TemplateEditor component handles its own authentication internally
+  // so we just render it directly without additional checks here
+  return element;
+};
+
 // Auth routes that redirect to home if already authenticated
 const AuthRoute: React.FC<{ element: React.ReactElement }> = ({ element }) => {
   const { isAuthenticated, loading } = useAuth();
@@ -118,6 +126,9 @@ const AppRoutes = () => {
           
           {/* Admin access page - public */}
           <Route path="/admin-access" element={<AdminAccess />} />
+          
+          {/* Template Editor - has its own key-based auth */}
+          <Route path="/templateeditor" element={<TemplateEditorRoute element={<TemplateEditor />} />} />
           
           {/* Protected routes - require authentication */}
           <Route path="/app" element={<ProtectedRoute element={<App />} />} />
