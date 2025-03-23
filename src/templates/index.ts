@@ -1,4 +1,4 @@
-import { Template } from '../App';
+import { Template } from '../services/userService';
 
 // Define the extended template type with additional metadata
 export interface TemplateMetadata extends Template {
@@ -9,6 +9,13 @@ export interface TemplateMetadata extends Template {
     name: string;
     path: string;
     type: 'header' | 'hero' | 'section' | 'footer' | 'navigation' | 'form' | 'card' | 'text' | 'image' | 'button';
+  }[];
+  images?: {
+    id: string;
+    name: string;
+    path: string;
+    usage: string;
+    dimensions?: string;
   }[];
 }
 
@@ -67,6 +74,43 @@ const reactTemplates: TemplateMetadata[] = [
         path: 'src/components/Footer.jsx',
         type: 'footer'
       }
+    ],
+    images: [
+      {
+        id: 'hero-image',
+        name: 'Hero Background',
+        path: '/templates/react/corporate-modern/images/hero-bg.jpg',
+        usage: 'Background image for the hero section',
+        dimensions: '1920x1080'
+      },
+      {
+        id: 'about-image',
+        name: 'About Section Image',
+        path: '/templates/react/corporate-modern/images/about.jpg',
+        usage: 'Image for the about section',
+        dimensions: '800x600'
+      },
+      {
+        id: 'team-member-1',
+        name: 'Team Member 1',
+        path: '/templates/react/corporate-modern/images/team-1.jpg',
+        usage: 'Team member photo',
+        dimensions: '400x400'
+      },
+      {
+        id: 'team-member-2',
+        name: 'Team Member 2',
+        path: '/templates/react/corporate-modern/images/team-2.jpg',
+        usage: 'Team member photo',
+        dimensions: '400x400'
+      },
+      {
+        id: 'logo',
+        name: 'Company Logo',
+        path: '/templates/react/corporate-modern/images/logo.svg',
+        usage: 'Company logo in header and footer',
+        dimensions: '200x50'
+      }
     ]
   },
   {
@@ -115,6 +159,57 @@ const reactTemplates: TemplateMetadata[] = [
         name: 'Footer',
         path: 'src/components/Footer.jsx',
         type: 'footer'
+      }
+    ],
+    images: [
+      {
+        id: 'hero-banner',
+        name: 'Hero Banner',
+        path: '/templates/react/shop-modern/images/hero-banner.jpg',
+        usage: 'Main banner image for the homepage',
+        dimensions: '1920x800'
+      },
+      {
+        id: 'product-1',
+        name: 'Product 1',
+        path: '/templates/react/shop-modern/images/product-1.jpg',
+        usage: 'Featured product image',
+        dimensions: '600x600'
+      },
+      {
+        id: 'product-2',
+        name: 'Product 2',
+        path: '/templates/react/shop-modern/images/product-2.jpg',
+        usage: 'Featured product image',
+        dimensions: '600x600'
+      },
+      {
+        id: 'product-3',
+        name: 'Product 3',
+        path: '/templates/react/shop-modern/images/product-3.jpg',
+        usage: 'Featured product image',
+        dimensions: '600x600'
+      },
+      {
+        id: 'category-1',
+        name: 'Category 1',
+        path: '/templates/react/shop-modern/images/category-1.jpg',
+        usage: 'Product category image',
+        dimensions: '400x300'
+      },
+      {
+        id: 'category-2',
+        name: 'Category 2',
+        path: '/templates/react/shop-modern/images/category-2.jpg',
+        usage: 'Product category image',
+        dimensions: '400x300'
+      },
+      {
+        id: 'logo',
+        name: 'Shop Logo',
+        path: '/templates/react/shop-modern/images/logo.svg',
+        usage: 'Shop logo in header and footer',
+        dimensions: '200x50'
       }
     ]
   }
@@ -175,6 +270,64 @@ const nextjsTemplates: TemplateMetadata[] = [
         path: 'src/components/Footer.tsx',
         type: 'footer'
       }
+    ],
+    images: [
+      {
+        id: 'hero-bg',
+        name: 'Hero Background',
+        path: '/templates/nextjs/business-pro/images/hero-bg.jpg',
+        usage: 'Background image for the hero section',
+        dimensions: '1920x1080'
+      },
+      {
+        id: 'services-icon-1',
+        name: 'Service Icon 1',
+        path: '/templates/nextjs/business-pro/images/service-1.svg',
+        usage: 'Icon for service 1',
+        dimensions: '64x64'
+      },
+      {
+        id: 'services-icon-2',
+        name: 'Service Icon 2',
+        path: '/templates/nextjs/business-pro/images/service-2.svg',
+        usage: 'Icon for service 2',
+        dimensions: '64x64'
+      },
+      {
+        id: 'services-icon-3',
+        name: 'Service Icon 3',
+        path: '/templates/nextjs/business-pro/images/service-3.svg',
+        usage: 'Icon for service 3',
+        dimensions: '64x64'
+      },
+      {
+        id: 'team-member-1',
+        name: 'Team Member 1',
+        path: '/templates/nextjs/business-pro/images/team-1.jpg',
+        usage: 'Team member photo',
+        dimensions: '400x400'
+      },
+      {
+        id: 'team-member-2',
+        name: 'Team Member 2',
+        path: '/templates/nextjs/business-pro/images/team-2.jpg',
+        usage: 'Team member photo',
+        dimensions: '400x400'
+      },
+      {
+        id: 'team-member-3',
+        name: 'Team Member 3',
+        path: '/templates/nextjs/business-pro/images/team-3.jpg',
+        usage: 'Team member photo',
+        dimensions: '400x400'
+      },
+      {
+        id: 'logo',
+        name: 'Business Logo',
+        path: '/templates/nextjs/business-pro/images/logo.svg',
+        usage: 'Business logo in header and footer',
+        dimensions: '200x50'
+      }
     ]
   },
   {
@@ -230,6 +383,64 @@ const nextjsTemplates: TemplateMetadata[] = [
         path: 'src/components/Footer.tsx',
         type: 'footer'
       }
+    ],
+    images: [
+      {
+        id: 'hero-banner',
+        name: 'Store Hero Banner',
+        path: '/templates/nextjs/store-pro/images/hero-banner.jpg',
+        usage: 'Main banner image for the homepage',
+        dimensions: '1920x800'
+      },
+      {
+        id: 'product-1',
+        name: 'Product 1',
+        path: '/templates/nextjs/store-pro/images/product-1.jpg',
+        usage: 'Featured product image',
+        dimensions: '600x600'
+      },
+      {
+        id: 'product-2',
+        name: 'Product 2',
+        path: '/templates/nextjs/store-pro/images/product-2.jpg',
+        usage: 'Featured product image',
+        dimensions: '600x600'
+      },
+      {
+        id: 'product-3',
+        name: 'Product 3',
+        path: '/templates/nextjs/store-pro/images/product-3.jpg',
+        usage: 'Featured product image',
+        dimensions: '600x600'
+      },
+      {
+        id: 'product-4',
+        name: 'Product 4',
+        path: '/templates/nextjs/store-pro/images/product-4.jpg',
+        usage: 'Featured product image',
+        dimensions: '600x600'
+      },
+      {
+        id: 'category-clothing',
+        name: 'Clothing Category',
+        path: '/templates/nextjs/store-pro/images/category-clothing.jpg',
+        usage: 'Category image',
+        dimensions: '400x300'
+      },
+      {
+        id: 'category-accessories',
+        name: 'Accessories Category',
+        path: '/templates/nextjs/store-pro/images/category-accessories.jpg',
+        usage: 'Category image',
+        dimensions: '400x300'
+      },
+      {
+        id: 'logo',
+        name: 'Store Logo',
+        path: '/templates/nextjs/store-pro/images/logo.svg',
+        usage: 'Store logo in header and footer',
+        dimensions: '200x50'
+      }
     ]
   }
 ];
@@ -252,6 +463,12 @@ export const getTemplatesByBusinessType = (businessType: string): TemplateMetada
 // Helper function to get templates by framework
 export const getTemplatesByFramework = (framework: 'react' | 'nextjs'): TemplateMetadata[] => {
   return allTemplates.filter(template => template.framework === framework);
+};
+
+// Helper function to get all images for a specific template
+export const getTemplateImages = (templateId: string): { id: string; name: string; path: string; usage: string; dimensions?: string }[] => {
+  const template = getTemplateById(templateId);
+  return template?.images || [];
 };
 
 export default allTemplates; 
