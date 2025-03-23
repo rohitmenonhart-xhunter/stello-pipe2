@@ -7,6 +7,15 @@ const ApiStatus: React.FC = () => {
   const [message, setMessage] = useState<string>('');
   const [error, setError] = useState<string>('');
   const [apiUrl, setApiUrl] = useState<string>('');
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+  // Check if user is authenticated
+  useEffect(() => {
+    const storedAuth = localStorage.getItem('apiDebuggerAuth');
+    if (storedAuth === 'true') {
+      setIsAuthenticated(true);
+    }
+  }, []);
 
   const checkApiConnection = async () => {
     setStatus('loading');
@@ -45,8 +54,15 @@ const ApiStatus: React.FC = () => {
   };
 
   useEffect(() => {
-    checkApiConnection();
-  }, []);
+    if (isAuthenticated) {
+      checkApiConnection();
+    }
+  }, [isAuthenticated]);
+
+  // If not authenticated, don't render anything
+  if (!isAuthenticated) {
+    return null;
+  }
 
   return (
     <Box 

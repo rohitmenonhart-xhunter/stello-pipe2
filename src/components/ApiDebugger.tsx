@@ -9,9 +9,20 @@ import {
   Alert, 
   Divider, 
   CircularProgress,
-  Grid
+  Grid,
+  InputAdornment,
+  IconButton,
+  Dialog,
+  DialogTitle,
+  DialogContent,
+  DialogActions
 } from '@mui/material';
 import { getApiUrl, API_CONFIG } from '../config/api';
+import VisibilityIcon from '@mui/icons-material/Visibility';
+import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
+import LockIcon from '@mui/icons-material/Lock';
+
+const ACCESS_KEY = "iamunique7$";
 
 const ApiDebugger: React.FC = () => {
   const [apiUrl, setApiUrl] = useState(API_CONFIG.API_BASE_URL);
@@ -20,6 +31,12 @@ const ApiDebugger: React.FC = () => {
   const [error, setError] = useState<string | null>(null);
   const [statusCode, setStatusCode] = useState<number | null>(null);
   const [envInfo, setEnvInfo] = useState<any>({});
+  
+  // States for access control
+  const [isAuthenticated, setIsAuthenticated] = useState(false);
+  const [accessKeyInput, setAccessKeyInput] = useState('');
+  const [showAccessKey, setShowAccessKey] = useState(false);
+  const [showAuthDialog, setShowAuthDialog] = useState(false);
 
   // Get environment information
   useEffect(() => {
@@ -30,7 +47,35 @@ const ApiDebugger: React.FC = () => {
       viteApiBaseUrl: import.meta.env.VITE_API_BASE_URL || 'not set',
       vitePythonApiBaseUrl: import.meta.env.VITE_PYTHON_API_BASE_URL || 'not set',
     });
+    
+    // Check localStorage for authenticated state
+    const storedAuth = localStorage.getItem('apiDebuggerAuth');
+    if (storedAuth === 'true') {
+      setIsAuthenticated(true);
+    }
   }, []);
+
+  const validateAccessKey = () => {
+    if (accessKeyInput === ACCESS_KEY) {
+      setIsAuthenticated(true);
+      localStorage.setItem('apiDebuggerAuth', 'true');
+      setShowAuthDialog(false);
+    } else {
+      setError('Invalid access key');
+    }
+  };
+
+  const handleKeyPress = (e: React.KeyboardEvent) => {
+    if (e.key === 'Enter') {
+      validateAccessKey();
+    }
+  };
+
+  const resetAuthentication = () => {
+    setIsAuthenticated(false);
+    localStorage.removeItem('apiDebuggerAuth');
+    setAccessKeyInput('');
+  };
 
   const testConnection = async () => {
     setLoading(true);
@@ -120,6 +165,68 @@ const ApiDebugger: React.FC = () => {
     }
   };
 
+  // Only render a button if not authenticated
+  if (!isAuthenticated) {
+    return (
+      <>
+        <Button 
+          variant="outlined" 
+          size="small" 
+          color="primary"
+          onClick={() => setShowAuthDialog(true)}
+          sx={{ 
+            my: 2, 
+            display: import.meta.env.DEV ? 'inline-flex' : 'none',
+            alignItems: 'center', 
+            gap: 1,
+            borderRadius: 2
+          }}
+        >
+          <LockIcon fontSize="small" />
+          Show API Debugger
+        </Button>
+        
+        <Dialog open={showAuthDialog} onClose={() => setShowAuthDialog(false)}>
+          <DialogTitle>API Debugger Access</DialogTitle>
+          <DialogContent>
+            <Alert severity="info" sx={{ mb: 2 }}>
+              Enter the access key to view the API debugger
+            </Alert>
+            <TextField
+              autoFocus
+              margin="dense"
+              label="Access Key"
+              type={showAccessKey ? 'text' : 'password'}
+              fullWidth
+              variant="outlined"
+              value={accessKeyInput}
+              onChange={(e) => setAccessKeyInput(e.target.value)}
+              onKeyPress={handleKeyPress}
+              InputProps={{
+                endAdornment: (
+                  <InputAdornment position="end">
+                    <IconButton
+                      edge="end"
+                      onClick={() => setShowAccessKey(!showAccessKey)}
+                    >
+                      {showAccessKey ? <VisibilityOffIcon /> : <VisibilityIcon />}
+                    </IconButton>
+                  </InputAdornment>
+                ),
+              }}
+            />
+            {error && <Alert severity="error" sx={{ mt: 2 }}>{error}</Alert>}
+          </DialogContent>
+          <DialogActions>
+            <Button onClick={() => setShowAuthDialog(false)}>Cancel</Button>
+            <Button onClick={validateAccessKey}>Access</Button>
+          </DialogActions>
+        </Dialog>
+      </>
+    );
+  }
+
+  // Render the full debugger when authenticated
   return (
     <Paper 
       elevation={3} 
@@ -130,9 +237,20 @@ const ApiDebugger: React.FC = () => {
         display: import.meta.env.DEV ? 'block' : 'none' 
       }}
     >
-      <Typography variant="h5" gutterBottom sx={{ color: 'primary.main' }}>
-        API Connection Debugger
-      </Typography>
+      <Box sx={{ display: 'flex', justifyContent: 'space-between', alignItems: 'center', mb: 2 }}>
+        <Typography variant="h5" gutterBottom sx={{ color: 'primary.main', mb: 0 }}>
+          API Connection Debugger
+        </Typography>
+        <Button 
+          variant="outlined" 
+          size="small" 
+          color="error" 
+          onClick={resetAuthentication}
+        >
+          Lock Debugger
+        </Button>
+      </Box>
+      
       <Typography variant="body2" color="text.secondary" paragraph>
         This tool is only visible in development mode and helps test API connectivity.
       </Typography>
