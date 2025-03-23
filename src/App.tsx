@@ -7,7 +7,6 @@ import { IaPages } from './components/IaPages';
 import Templates from './components/Templates';
 import UserInfoForm from './components/UserInfoForm';
 import Header from './components/Header';
-import ApiStatus from './components/ApiStatus';
 import { saveUserData, Template } from './services/userService';
 import './App.css';
 import CheckCircleIcon from '@mui/icons-material/CheckCircle';
@@ -293,140 +292,147 @@ function App() {
   };
 
   return (
-    <Container maxWidth="lg" sx={{ paddingTop: 2, paddingBottom: 4 }}>
+    <Box className="App">
       <Header />
-      
-      {/* Display API status at the top of the page */}
-      <ApiStatus />
-      
-      {/* If user has a delivered project, show a link to view it */}
-      {hasDeliveredProject && (
-        <Paper 
-          elevation={3} 
-          sx={{ 
-            padding: 3, 
-            marginBottom: 3, 
-            textAlign: 'center',
-            borderLeft: `4px solid ${theme.palette.success.main}`
-          }}
-        >
-          <Typography variant="h5" gutterBottom>
-            Good news! Your project has been delivered!
-          </Typography>
-          <Typography variant="body1" paragraph>
-            Your project ID is: <strong>{deliveredProjectId}</strong>
-          </Typography>
-          <Button 
-            variant="contained" 
-            color="primary"
-            onClick={() => navigate(`/client-dashboard?projectId=${deliveredProjectId}`)}
+      <Container maxWidth="lg" sx={{ mt: 4, mb: 8 }}>
+        {hasDeliveredProject && (
+          <Paper 
+            elevation={0} 
+            sx={{ 
+              p: 3, 
+              mb: 4, 
+              borderRadius: 2,
+              border: `1px solid ${theme.palette.success.main}`,
+              backgroundColor: alpha(theme.palette.success.main, 0.05)
+            }}
           >
-            View Your Project
-          </Button>
-        </Paper>
-      )}
-      
-      <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
-        {steps.map((label, index) => (
-          <Step key={label}>
-            <StepLabel StepIconComponent={(props) => <ColorlibStepIcon {...props} icon={index + 1} />}>
-              {label}
-            </StepLabel>
-          </Step>
-        ))}
-      </Stepper>
-      
-      <Box sx={{ mt: 4 }}>
-        {activeStep === steps.length ? (
-          <Box sx={{ textAlign: 'center' }}>
-            <Typography variant="h4" gutterBottom>
-              Thank you for your submission!
+            <Typography variant="h6" gutterBottom>
+              Your previous project ({deliveredProjectId}) has been delivered!
             </Typography>
             <Typography variant="body1" paragraph>
-              Your project has been created successfully. You can check the status of your project in the client dashboard.
+              You can check its status in the client dashboard or start a new project.
             </Typography>
-            <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center', gap: 2 }}>
+            <Box sx={{ display: 'flex', gap: 2, mt: 2 }}>
+              <Button 
+                variant="outlined" 
+                color="primary" 
+                onClick={navigateToClientDashboard}
+              >
+                View Delivered Project
+              </Button>
               <Button 
                 variant="contained" 
                 color="primary" 
-                onClick={navigateToClientDashboard}
-                sx={{ px: 4, py: 1.5 }}
+                onClick={startNewProject}
               >
-                Go to Client Dashboard
+                Start New Project
               </Button>
-              {user?.role === 'developer' && (
+            </Box>
+          </Paper>
+        )}
+        
+        <Stepper alternativeLabel activeStep={activeStep} connector={<ColorlibConnector />}>
+          {steps.map((label, index) => (
+            <Step key={label}>
+              <StepLabel StepIconComponent={(props) => <ColorlibStepIcon {...props} icon={index + 1} />}>
+                {label}
+              </StepLabel>
+            </Step>
+          ))}
+        </Stepper>
+        
+        <Box sx={{ mt: 4 }}>
+          {activeStep === steps.length ? (
+            <Box sx={{ textAlign: 'center' }}>
+              <Typography variant="h4" gutterBottom>
+                Thank you for your submission!
+              </Typography>
+              <Typography variant="body1" paragraph>
+                Your project has been created successfully. You can check the status of your project in the client dashboard.
+              </Typography>
+              <Box sx={{ mt: 4, display: 'flex', justifyContent: 'center', gap: 2 }}>
                 <Button 
-                  variant="outlined" 
+                  variant="contained" 
                   color="primary" 
-                  onClick={() => navigateToDeveloperPortal(user.name || 'Developer')}
+                  onClick={navigateToClientDashboard}
                   sx={{ px: 4, py: 1.5 }}
                 >
-                  Go to Developer Portal
+                  Go to Client Dashboard
                 </Button>
+                {user?.role === 'developer' && (
+                  <Button 
+                    variant="outlined" 
+                    color="primary" 
+                    onClick={() => navigateToDeveloperPortal(user.name || 'Developer')}
+                    sx={{ px: 4, py: 1.5 }}
+                  >
+                    Go to Developer Portal
+                  </Button>
+                )}
+              </Box>
+            </Box>
+          ) : (
+            <Box>
+              {activeStep === 0 && (
+                <Box className="form-container">
+                  <BrdForm onSubmit={handleBrdSubmit} />
+                </Box>
               )}
+              
+              {activeStep === 1 && (
+                <Box sx={{ 
+                  width: '100%',
+                  borderRadius: '16px',
+                  boxShadow: '0 8px 30px rgba(0, 0, 0, 0.06)',
+                  transition: 'all 0.3s ease',
+                  '&:hover': {
+                    boxShadow: '0 12px 40px rgba(98, 0, 234, 0.12)',
+                  },
+                  mb: 8
+                }}>
+                  <IaPages 
+                    selectedPages={selectedPages}
+                    onNext={() => handleNext()}
+                    onUpdateNotes={handleUpdatePageNotes}
+                  />
+                </Box>
+              )}
+              
+              {activeStep === 2 && (
+                <Box>
+                  <Templates 
+                    businessType={brdAnswers.keyFeatures.includes('Business Type:') 
+                      ? brdAnswers.keyFeatures.split('Business Type:')[1].split(',')[0].trim() 
+                      : 'corporate'} 
+                    onSelectTemplate={handleTemplateSelect} 
+                  />
+                </Box>
+              )}
+              
+              {activeStep === 3 && (
+                <Box className="form-container">
+                  <UserInfoForm 
+                    onSubmit={handleUserInfoSubmit}
+                    isLoading={isLoading}
+                  />
+                </Box>
+              )}
+              
+              <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
+                <Button
+                  color="inherit"
+                  disabled={activeStep === 0}
+                  onClick={handleBack}
+                  sx={{ mr: 1 }}
+                >
+                  Back
+                </Button>
+                <Box sx={{ flex: '1 1 auto' }} />
+              </Box>
             </Box>
-          </Box>
-        ) : (
-          <Box>
-            {activeStep === 0 && (
-              <Box className="form-container">
-                <BrdForm onSubmit={handleBrdSubmit} />
-              </Box>
-            )}
-            
-            {activeStep === 1 && (
-              <Box sx={{ 
-                width: '100%',
-                borderRadius: '16px',
-                boxShadow: '0 8px 30px rgba(0, 0, 0, 0.06)',
-                transition: 'all 0.3s ease',
-                '&:hover': {
-                  boxShadow: '0 12px 40px rgba(98, 0, 234, 0.12)',
-                },
-                mb: 8
-              }}>
-                <IaPages 
-                  selectedPages={selectedPages}
-                  onNext={() => handleNext()}
-                  onUpdateNotes={handleUpdatePageNotes}
-                />
-              </Box>
-            )}
-            
-            {activeStep === 2 && (
-              <Box>
-                <Templates 
-                  businessType={brdAnswers.keyFeatures.includes('Business Type:') 
-                    ? brdAnswers.keyFeatures.split('Business Type:')[1].split(',')[0].trim() 
-                    : 'corporate'} 
-                  onSelectTemplate={handleTemplateSelect} 
-                />
-              </Box>
-            )}
-            
-            {activeStep === 3 && (
-              <Box className="form-container">
-                <UserInfoForm 
-                  onSubmit={handleUserInfoSubmit}
-                  isLoading={isLoading}
-                />
-              </Box>
-            )}
-            
-            <Box sx={{ display: 'flex', flexDirection: 'row', pt: 2 }}>
-              <Button
-                color="inherit"
-                disabled={activeStep === 0}
-                onClick={handleBack}
-                sx={{ mr: 1 }}
-              >
-                Back
-              </Button>
-              <Box sx={{ flex: '1 1 auto' }} />
-            </Box>
-          </Box>
-        )}
-      </Box>
+          )}
+        </Box>
+      </Container>
       
       <Snackbar 
         open={!!error || !!success} 
@@ -442,7 +448,7 @@ function App() {
           {error || success}
         </Alert>
       </Snackbar>
-    </Container>
+    </Box>
   );
 }
 
