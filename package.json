@@ -4,11 +4,17 @@
   "version": "0.0.0",
   "scripts": {
     "dev": "vite",
+    "dev:local": "vite --mode development",
     "build": "vite build",
     "start": "node api/server.js",
     "preview": "vite preview",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "server": "node api/server.js",
+    "server:local": "cross-env NODE_ENV=development node api/server.js",
+    "dev:full": "concurrently \"npm run server:local\" \"npm run dev:local\"",
+    "test:local-api": "node scripts/local-api-test.js",
+    "check:server": "node scripts/server-check.js",
+    "check:server:prod": "node scripts/server-check.js --prod",
     "vercel-build": "npm install --legacy-peer-deps && vite build"
   },
   "dependencies": {
@@ -56,6 +62,8 @@
     "@typescript-eslint/parser": "^6.10.0",
     "@vitejs/plugin-react": "^4.3.1",
     "autoprefixer": "^10.4.18",
+    "concurrently": "^9.1.2",
+    "cross-env": "^7.0.3",
     "eslint": "^8.57.0",
     "eslint-plugin-react-hooks": "^4.6.0",
     "eslint-plugin-react-refresh": "^0.4.11",
